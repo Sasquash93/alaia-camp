@@ -7,24 +7,11 @@
 (function(){
   'use strict';
 
-  /* ---------- NAV solid on scroll ---------- */
-  const nav = document.getElementById('nav');
-  function navState(){ nav.classList.toggle('solid', window.scrollY > 40); }
-  navState();
-
   /* ---------- Hero map: trigger draw-in ---------- */
   const hero=document.getElementById('hero');
   function startHero(){ if(hero) hero.classList.add('go'); }
   if(document.readyState!=='loading') setTimeout(startHero,120);
   else document.addEventListener('DOMContentLoaded',()=>setTimeout(startHero,120));
-
-  /* ---------- Mobile menu ---------- */
-  const burger=document.getElementById('burger');
-  const menu=document.getElementById('mobileMenu');
-  const closeMenu=document.getElementById('closeMenu');
-  if(burger){ burger.addEventListener('click',()=>menu.classList.add('open')); }
-  if(closeMenu){ closeMenu.addEventListener('click',()=>menu.classList.remove('open')); }
-  if(menu) menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
 
   /* ---------- Tabs explorer ---------- */
   const tabs=document.querySelectorAll('#tabsExplorer .tab');
@@ -146,7 +133,6 @@
   }
 
   function onScroll(){
-    navState();
     try{ update(); }catch(e){}
     try{ revealCheck(); }catch(e){}
   }
