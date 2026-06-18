@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Alaia Camp 2026 · Campamento de verano en Malinalco</title>
+<meta name="description" content="Alaia Camp 2026 — campamento de aventura y educación informal en Malinalco. 19 al 25 de julio de 2026, para niñas, niños y jóvenes de 6 a 17 años." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css?v=18" />
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <a class="brand" href="#hero"><b>ALAIA</b><i>CAMP</i></a>
+  <div class="links">
+    <a href="#hero" data-en="The Summer">El Verano</a>
+    <a href="#porque" data-en="Why Alaia">¿Por qué?</a>
+    <a href="#actividades" data-en="Activities">Actividades</a>
+    <a href="#seguridad" data-en="Safety">Seguridad</a>
+    <a href="#lugar" data-en="The Place">El Lugar</a>
+    <a href="#forja" data-en="Food & La Forja">Comida & Forja</a>
+  </div>
+  <div class="nav-right">
+    <div class="lang" id="lang">
+      <button data-lang="es" class="on">ES</button>
+      <button data-lang="en">EN</button>
+    </div>
+    <a class="nav-cta" href="#contacto" data-en="Contact us">Contáctanos</a>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close" id="closeMenu" aria-label="Cerrar">×</button>
+  <a href="#hero" data-en="The Summer">El Verano</a>
+  <a href="#porque" data-en="Why Alaia">¿Por qué?</a>
+  <a href="#actividades" data-en="Activities">Actividades</a>
+  <a href="#seguridad" data-en="Safety">Seguridad</a>
+  <a href="#lugar" data-en="The Place">El Lugar</a>
+  <a href="#forja" data-en="Food & La Forja">Comida & Forja</a>
+  <a href="#contacto" data-en="Contact">Contacto</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <div class="topo"></div>
+
+  <!-- cartographic map of the camp: auto-draws on load -->
+  <svg class="hero-map" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="routeGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#F0C24B" />
+        <stop offset="0.5" stop-color="#E2743A" />
+        <stop offset="1" stop-color="#C24C86" />
+      </linearGradient>
+      <filter id="routeGlow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="5" result="b" />
+        <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+    </defs>
+
+    <!-- topographic reference background: contour lines, ridges, elevation cotas & survey marks -->
+    <g class="hero-topo">
+      <!-- mountain cluster (top-left) -->
+      <path class="hero-contour minor" d="M232,114 C312,78 426,92 472,160 C508,214 466,294 374,310 C288,325 210,282 208,200 C207,160 212,140 232,114 Z" />
+      <path class="hero-contour minor" d="M250,128 C320,96 418,108 458,168 C490,216 452,286 372,300 C296,313 226,274 224,202 C223,168 232,150 250,128 Z" />
+      <path class="hero-contour" d="M282,150 C338,124 408,134 436,178 C460,216 430,268 366,278 C306,287 262,256 258,206 C256,180 264,166 282,150 Z" />
+      <path class="hero-contour" d="M302,176 C342,160 386,168 402,196 C416,222 396,254 358,260 C320,266 290,246 288,212 C287,196 292,186 302,176 Z" />
+      <path class="hero-contour" d="M322,196 C348,188 372,194 382,210 C392,226 380,244 356,248 C332,252 314,240 313,220 C312,210 316,202 322,196 Z" />
+      <!-- hill cluster (bottom-right) -->
+      <path class="hero-contour minor" d="M1040,500 C1130,472 1248,492 1284,560 C1312,612 1272,690 1178,704 C1090,717 1000,674 998,594 C997,556 1010,524 1040,500 Z" />
+      <path class="hero-contour minor" d="M1058,520 C1140,494 1232,512 1264,572 C1290,620 1252,690 1166,702 C1086,714 1006,676 1004,602 C1003,566 1018,540 1058,520 Z" />
+      <path class="hero-contour" d="M1086,548 C1150,528 1216,544 1240,590 C1260,628 1228,680 1160,688 C1098,695 1048,664 1046,612 C1045,584 1058,564 1086,548 Z" />
+      <path class="hero-contour" d="M1110,576 C1152,562 1196,572 1212,602 C1226,628 1204,660 1162,666 C1124,671 1094,650 1092,616 C1091,600 1098,588 1110,576 Z" />
+      <path class="hero-contour" d="M1130,598 C1158,590 1186,598 1196,618 C1204,636 1190,656 1162,660 C1138,663 1118,650 1118,628 C1118,616 1122,606 1130,598 Z" />
+      <!-- secondary knoll (mid-upper-right) -->
+      <path class="hero-contour minor" d="M820,300 C880,282 952,296 974,344 C992,382 962,432 898,440 C842,447 794,418 793,366 C792,340 802,318 820,300 Z" />
+      <path class="hero-contour" d="M846,322 C892,310 942,322 958,356 C972,384 950,420 902,426 C862,431 828,410 827,376 C826,358 834,338 846,322 Z" />
+      <!-- small knoll (lower-left) -->
+      <path class="hero-contour minor" d="M150,612 C204,596 270,610 290,652 C306,686 280,730 224,738 C176,745 132,718 131,672 C130,650 138,628 150,612 Z" />
+      <path class="hero-contour" d="M174,634 C214,624 258,634 272,662 C284,686 264,718 224,724 C190,729 160,710 159,682 C158,668 164,648 174,634 Z" />
+      <!-- river / valley ridge lines -->
+      <path class="hero-ridge" d="M40,560 C220,520 360,600 520,540 C700,472 860,560 1040,500 C1180,452 1320,512 1420,470" />
+      <path class="hero-ridge faint" d="M60,690 C260,640 420,720 640,660 C880,594 1080,664 1280,608 C1340,592 1390,600 1430,588" />
+      <path class="hero-ridge faint" d="M20,430 C180,400 320,452 470,410 C640,362 800,430 980,388 C1140,350 1300,402 1430,372" />
+      <path class="hero-ridge faint" d="M30,250 C200,214 380,268 560,224 C740,180 900,238 1080,200" />
+      <!-- survey reference marks -->
+      <g class="hero-ref">
+        <path class="hero-cross" d="M170,300 h14 M177,293 v14" />
+        <path class="hero-cross" d="M640,250 h14 M647,243 v14" />
+        <path class="hero-cross" d="M900,470 h14 M907,463 v14" />
+        <path class="hero-cross" d="M1330,640 h14 M1337,633 v14" />
+        <path class="hero-cross" d="M120,720 h14 M127,713 v14" />
+        <path class="hero-cross" d="M1240,250 h14 M1247,243 v14" />
+        <path class="hero-cross" d="M500,720 h14 M507,713 v14" />
+        <circle class="hero-dot" cx="430" cy="430" r="2.4" />
+        <circle class="hero-dot" cx="780" cy="700" r="2.4" />
+        <circle class="hero-dot" cx="1180" cy="320" r="2.4" />
+        <circle class="hero-dot" cx="220" cy="470" r="2.4" />
+        <circle class="hero-dot" cx="960" cy="250" r="2.4" />
+        <circle class="hero-dot" cx="660" cy="540" r="2.4" />
+        <circle class="hero-dot" cx="1380" cy="430" r="2.4" />
+      </g>
+      <!-- grid graticule ticks -->
+      <g class="hero-grat">
+        <path d="M360,30 v12 M360,790 v-12" /><path d="M720,30 v12 M720,790 v-12" /><path d="M1080,30 v12 M1080,790 v-12" />
+        <path d="M30,205 h12 M1410,205 h-12" /><path d="M30,410 h12 M1410,410 h-12" /><path d="M30,615 h12 M1410,615 h-12" />
+      </g>
+      <!-- elevation cotas -->
+      <text class="hero-elev" x="316" y="220">▲ 2,140</text>
+      <text class="hero-elev" x="1118" y="616">▲ 1,750</text>
+      <text class="hero-elev" x="96" y="404">· 1,920 ·</text>
+      <text class="hero-elev" x="846" y="382">▲ 1,880</text>
+      <text class="hero-elev" x="150" y="690">· 1,690 ·</text>
+    </g>
+
+    <!-- star chart: mystical sky -->
+    <g class="hero-stars">
+      <polyline class="hero-constel" points="240,92 372,52 560,72 762,56 980,82" />
+      <polyline class="hero-constel" points="70,182 60,360 122,520" />
+      <circle class="hero-star tw" cx="120" cy="60" r="1.6" />
+      <circle class="hero-star" cx="240" cy="92" r="1.9" />
+      <circle class="hero-star tw2" cx="372" cy="52" r="1.5" />
+      <circle class="hero-star" cx="560" cy="72" r="2" />
+      <circle class="hero-star tw" cx="762" cy="56" r="1.6" />
+      <circle class="hero-star tw2" cx="980" cy="82" r="1.9" />
+      <circle class="hero-star" cx="1120" cy="58" r="1.4" />
+      <circle class="hero-star tw" cx="1300" cy="92" r="1.7" />
+      <circle class="hero-star tw2" cx="1380" cy="150" r="1.5" />
+      <circle class="hero-star" cx="70" cy="182" r="1.7" />
+      <circle class="hero-star tw" cx="60" cy="360" r="1.5" />
+      <circle class="hero-star tw2" cx="122" cy="520" r="1.8" />
+      <circle class="hero-star" cx="1410" cy="300" r="1.5" />
+      <circle class="hero-star tw" cx="1405" cy="520" r="1.7" />
+      <circle class="hero-star tw2" cx="700" cy="118" r="1.4" />
+    </g>
+
+    <!-- the expedition route -->
+    <path class="hero-route-base" fill="none" d="M120,185 C150,140 220,118 285,140 C350,160 440,158 520,140 C700,108 850,118 1015,142 C1160,165 1280,215 1305,375 C1325,500 1260,600 1120,660 C950,725 740,728 600,690 C540,672 600,765 705,802" />
+    <path class="hero-route-draw" fill="none" pathLength="1" d="M120,185 C150,140 220,118 285,140 C350,160 440,158 520,140 C700,108 850,118 1015,142 C1160,165 1280,215 1305,375 C1325,500 1260,600 1120,660 C950,725 740,728 600,690 C540,672 600,765 705,802" />
+    <circle class="hero-route-head" r="6.5">
+      <animateMotion dur="4.4s" begin="0.5s" fill="freeze" calcMode="linear" path="M120,185 C150,140 220,118 285,140 C350,160 440,158 520,140 C700,108 850,118 1015,142 C1160,165 1280,215 1305,375 C1325,500 1260,600 1120,660 C950,725 740,728 600,690 C540,672 600,765 705,802" />
+    </circle>
+
+    <!-- waypoints -->
+    <g transform="translate(285,140)"><g class="wp" style="--d:1.2s">
+      <circle class="wp-ring" r="22" />
+      <g class="wp-ic" transform="translate(-11,-11) scale(.92)" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M2 6 L22 11" /><circle cx="8" cy="7.5" r="1.6" /><path d="M8 9 v3" /><path d="M8 12 l-2.5 4 M8 12 l2.5 4" />
+      </g>
+      <text class="wp-tx" y="42">TIROLESA</text>
+    </g></g>
+
+    <g transform="translate(520,140)"><g class="wp" style="--d:1.7s">
+      <circle class="wp-ring" r="22" />
+      <g class="wp-ic" transform="translate(-11,-11) scale(.92)" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M2 20 L9 8 l3 5 2-3 6 10 Z" /><path d="M9 8 l1.4 2.4" />
+      </g>
+      <text class="wp-tx" y="42">SENDERISMO</text>
+    </g></g>
+
+    <g transform="translate(1015,142)"><g class="wp" style="--d:2.5s">
+      <circle class="wp-ring" r="22" />
+      <g class="wp-ic" transform="translate(-11,-11) scale(.92)" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M2 9 c2-2 4-2 6 0 s4 2 6 0 4-2 6 0" /><path d="M2 14 c2-2 4-2 6 0 s4 2 6 0 4-2 6 0" /><path d="M2 19 c2-2 4-2 6 0 s4 2 6 0 4-2 6 0" />
+      </g>
+      <text class="wp-tx" y="42">ALBERCA</text>
+    </g></g>
+
+    <g transform="translate(1305,375)"><g class="wp" style="--d:3.2s">
+      <circle class="wp-ring" r="22" />
+      <g class="wp-ic" transform="translate(-11,-11) scale(.92)" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.4" fill="currentColor" />
+      </g>
+      <text class="wp-tx" y="42">TIRO CON ARCO</text>
+    </g></g>
+
+    <g transform="translate(1120,660)"><g class="wp" style="--d:3.9s">
+      <circle class="wp-ring" r="22" />
+      <g class="wp-ic" transform="translate(-11,-11) scale(.92)" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 3 c1.5 4 5 5 5 9 a5 5 0 0 1-10 0 c0-2 1-3.2 2.2-4.2 C9 9.5 11 8.6 12 3Z" />
+      </g>
+      <text class="wp-tx" y="42">FOGATA</text>
+    </g></g>
+
+    <g transform="translate(600,690)"><g class="wp" style="--d:4.5s">
+      <circle class="wp-ring" r="22" />
+      <g class="wp-ic" transform="translate(-11,-11) scale(.92)" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 5 L2 20 h20 Z" /><path d="M12 5 v15" />
+      </g>
+      <text class="wp-tx" y="42">CABAÑAS</text>
+    </g></g>
+  </svg>
+
+  <div class="frame-ticks"></div>
+  <div class="embers" aria-hidden="true">
+    <i style="left:8%;--dx:18px;animation-duration:13s;animation-delay:0s;"></i>
+    <i style="left:18%;--dx:-14px;animation-duration:16s;animation-delay:3s;"></i>
+    <i style="left:32%;--dx:22px;animation-duration:14s;animation-delay:6s;"></i>
+    <i style="left:47%;--dx:-10px;animation-duration:18s;animation-delay:1.5s;"></i>
+    <i style="left:61%;--dx:16px;animation-duration:15s;animation-delay:4.5s;"></i>
+    <i style="left:74%;--dx:-20px;animation-duration:17s;animation-delay:2s;"></i>
+    <i style="left:86%;--dx:12px;animation-duration:13.5s;animation-delay:7s;"></i>
+    <i style="left:93%;--dx:-16px;animation-duration:19s;animation-delay:5s;"></i>
+  </div>
+  <div class="compass">LA ORDEN DE ALAIA<br/>18°56′N · 99°29′O<br/>MALINALCO · ANNO MMXXVI</div>
+  <div class="hero-inner">
+    <svg class="seal" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="1.4" />
+      <circle cx="50" cy="50" r="38.5" fill="none" stroke="currentColor" stroke-width="1" />
+      <circle class="seal-rotate" cx="50" cy="50" r="43" fill="none" stroke="currentColor" stroke-width="4.6" stroke-dasharray="1.3 6" opacity=".55" />
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M28 64 L40 48 L49 58 L60 44 L72 64" />
+        <path d="M24 64 H76" opacity=".55" />
+      </g>
+      <circle cx="50" cy="33" r="5" fill="currentColor" />
+      <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M50 24.5 V21" /><path d="M58.5 24.5 L61 22" /><path d="M58.5 33 H62" /><path d="M58.5 41.5 L61 44" />
+        <path d="M41.5 24.5 L39 22" /><path d="M41.5 33 H38" /><path d="M41.5 41.5 L39 44" />
+      </g>
+    </svg>
+    <div class="place">▲ <span data-en="Malinalco, State of México">Malinalco, Edo. de México</span></div>
+    <h1 class="disp"><span data-en="Live the summer">Vive el verano</span><br/><em data-en="like an expedition.">como una expedición.</em></h1>
+    <p class="motto" data-en="Learning by doing · growing by living">Aprender haciendo · crecer viviendo</p>
+    <p class="lead" data-en="An order of adventure and informal education for kids and teens aged 6 to 17. We walk the path together — and no one walks it alone.">Una orden de aventura y educación informal para niñas, niños y jóvenes de 6 a 17 años. Recorremos la senda juntos, y nadie la camina solo.</p>
+    <div class="meta">
+      <span class="chip"><span class="dot" style="background:var(--coral)"></span><span data-en="July 19–25, 2026">19 — 25 julio 2026</span></span>
+      <span class="chip"><span class="dot" style="background:var(--sky)"></span><span data-en="Single week">Única semana</span></span>
+      <span class="chip"><span class="dot" style="background:var(--sun)"></span><span data-en="Ages 6 to 17">6 a 17 años</span></span>
+    </div>
+  </div>
+  <div class="scroll-hint"><span data-en="Follow the trail">Sigue la ruta</span><span class="arrow"></span></div>
+</header>
+
+<!-- ============ CREED / OATH ============ -->
+<section class="creed" aria-label="Credo">
+  <div class="topo-mini"></div>
+  <div class="inner">
+    <svg class="seal" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="1.4" />
+      <circle cx="50" cy="50" r="38.5" fill="none" stroke="currentColor" stroke-width="1" />
+      <circle class="seal-rotate" cx="50" cy="50" r="43" fill="none" stroke="currentColor" stroke-width="4.6" stroke-dasharray="1.3 6" opacity=".55" />
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M28 64 L40 48 L49 58 L60 44 L72 64" />
+        <path d="M24 64 H76" opacity=".55" />
+      </g>
+      <circle cx="50" cy="33" r="5" fill="currentColor" />
+      <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M50 24.5 V21" /><path d="M58.5 24.5 L61 22" /><path d="M58.5 33 H62" /><path d="M58.5 41.5 L61 44" />
+        <path d="M41.5 24.5 L39 22" /><path d="M41.5 33 H38" /><path d="M41.5 41.5 L39 44" />
+      </g>
+    </svg>
+    <p class="kicker" data-en="The creed of the order">El credo de la orden</p>
+    <blockquote data-en="We learn by doing, we grow by living, and we return home — <em>always joyful</em>.">Aprendemos haciendo, crecemos viviendo, y volvemos a casa <em>siempre alegres</em>.</blockquote>
+    <div class="triad">
+      <span data-en="Belonging">Pertenencia</span>
+      <span data-en="Courage">Valentía</span>
+      <span data-en="Wonder">Asombro</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<main class="journey" id="journey">
+  <div class="trail-rail" id="trailRail" aria-hidden="true">
+    <svg id="trailSvg" preserveAspectRatio="none">
+      <path id="trailPlanned" fill="none" stroke="oklch(0.70 0.155 38 / 0.42)" stroke-width="3" stroke-dasharray="10 10" stroke-linecap="round"></path>
+      <path id="trailTraveled" fill="none" stroke="var(--coral)" stroke-width="3" stroke-linecap="round"></path>
+    </svg>
+    <div class="trail-marker" id="trailMarker"><div class="pulse"></div><div class="core"></div></div>
+  </div>
+
+  <!-- ===== 01 · ¿POR QUÉ? ===== -->
+  <section class="block station" id="porque" data-station="01">
+    <div class="wrap">
+      <aside class="station-aside">
+        <div class="waypoint">
+          <span class="wp-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21 c0-7 4-13 14-15 -1 9 -6 14 -14 15Z"/><path d="M9 17 c2-3 5-5 8-6"/></svg></span>
+          <span class="wp-name"><b>I</b><span data-en="Why">¿Por qué?</span></span>
+        </div>
+      </aside>
+      <div class="station-body">
+        <div class="section-head reveal">
+          <div class="rite-mark"><span class="rnum">I</span><span class="rlbl" data-en="First chapter">Capítulo primero</span></div>
+          <span class="eyebrow" data-en="Informal education">Educación informal</span>
+          <h2 data-en="More than a vacation — a real engine for growth.">Más que unas vacaciones: un verdadero motor de desarrollo.</h2>
+        </div>
+        <div class="def-card reveal" style="display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;margin-bottom:26px">
+          <div class="topo-mini"></div>
+          <div style="position:relative">
+            <h3 data-en="What is informal education?">¿Qué es la educación informal?</h3>
+            <p data-en="A way of teaching and learning that happens outside the traditional classroom — built on experience, exploration and active participation in all kinds of activities.">Un proceso de enseñanza y aprendizaje que ocurre fuera del entorno escolar tradicional. Se basa en la experiencia, la exploración y la participación activa en actividades de todo tipo.</p>
+          </div>
+          <p class="tagline" style="margin:0" data-en="“Learning by doing, growing by living, always joyful.”">“Aprender haciendo, crecer viviendo, siempre alegres.”</p>
+        </div>
+        <div class="why-grid">
+          <div class="card reveal">
+            <div class="ic" style="background:oklch(0.70 0.155 38 / .16);color:var(--coral)">◆</div>
+            <div class="num">01</div>
+            <h3 data-en="Skill development">Desarrollo de habilidades</h3>
+            <p data-en="From starting their own business to cooking, climbing or first aid.">Desde hacer su propio negocio hasta cocinar, escalar o primeros auxilios.</p>
+          </div>
+          <div class="card reveal d1">
+            <div class="ic" style="background:oklch(0.69 0.12 232 / .16);color:var(--sky)">▲</div>
+            <div class="num">02</div>
+            <h3 data-en="Independence">Independencia</h3>
+            <p data-en="They learn to care for themselves and the world around them.">Aprenden a cuidar de sí mismos y del mundo que los rodea.</p>
+          </div>
+          <div class="card reveal d2">
+            <div class="ic" style="background:oklch(0.84 0.145 90 / .22);color:var(--coral)">●</div>
+            <div class="num">03</div>
+            <h3 data-en="Wider horizons">Ampliar horizontes</h3>
+            <p data-en="Leaving their comfort zone enriches their perspective.">Salir de la zona de confort enriquece su perspectiva.</p>
+          </div>
+          <div class="card reveal d1">
+            <div class="ic" style="background:oklch(0.62 0.17 350 / .16);color:var(--berry)">◆</div>
+            <div class="num">04</div>
+            <h3 data-en="Lasting friendships">Relaciones que perduran</h3>
+            <p data-en="Friendships that last and stronger social skills.">Amistades que perduran y habilidades sociales mejoradas.</p>
+          </div>
+          <div class="card reveal d2">
+            <div class="ic" style="background:oklch(0.55 0.09 150 / .18);color:var(--moss)">▲</div>
+            <div class="num">05</div>
+            <h3 data-en="Confidence & resilience">Confianza y resiliencia</h3>
+            <p data-en="Overcoming challenges in a safe place builds self-esteem.">Superar desafíos en un entorno seguro fortalece la autoestima.</p>
+          </div>
+          <div class="card reveal d3" style="display:flex;flex-direction:column;justify-content:center;background:var(--pine);color:var(--cream);border-color:transparent">
+            <div class="num" style="color:var(--sun)">+1000</div>
+            <h3 style="margin-top:8px" data-en="camps run by our team">campamentos realizados por nuestro equipo</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 · ACTIVIDADES ===== -->
+  <section class="block station" id="actividades" data-station="02">
+    <div class="wrap">
+      <aside class="station-aside">
+        <div class="waypoint">
+          <span class="wp-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21 V4"/><path d="M6 4 h11 l-2 3 2 3 H6"/></svg></span>
+          <span class="wp-name"><b>II</b><span data-en="Activities">Actividades</span></span>
+        </div>
+      </aside>
+      <div class="station-body">
+        <div class="section-head reveal">
+          <div class="rite-mark"><span class="rnum">II</span><span class="rlbl" data-en="Second chapter">Capítulo segundo</span></div>
+          <span class="eyebrow" data-en="The program">El programa</span>
+          <h2 data-en="An ocean of activities to choose from.">Un océano de actividades para elegir.</h2>
+          <p data-en="Different teams for each activity so every camper integrates. Explore each station of the day:">Equipos diferentes según la actividad para lograr la integración entre todos los campers. Explora cada estación del día:</p>
+        </div>
+        <div class="tabs-explorer reveal d1" id="tabsExplorer">
+          <div class="topo-mini"></div>
+          <div class="tabbar" role="tablist">
+            <button class="tab on" data-tab="clinicas"><span class="n">01</span><span data-en="Clinics">Clínicas</span></button>
+            <button class="tab" data-tab="talleres"><span class="n">02</span><span data-en="Workshops">Talleres</span></button>
+            <button class="tab" data-tab="imagine"><span class="n">03</span>Imagine</button>
+            <button class="tab" data-tab="nocturnos"><span class="n">04</span><span data-en="Night games">Nocturnos</span></button>
+            <button class="tab" data-tab="teambuilding"><span class="n">05</span>Teambuilding</button>
+          </div>
+          <div class="tab-body">
+            <!-- Clínicas -->
+            <div class="tab-panel on" id="clinicas">
+              <div class="panel-head">
+                <div>
+                  <h3 data-en="Clinics">Clínicas</h3>
+                  <p data-en="Physical activities every morning to build skills, each one led by a professional in the field.">Actividades físicas por la mañana para desarrollar habilidades, cada una impartida por un profesional de su área.</p>
+                </div>
+                <span class="panel-time" data-en="◷ Morning">◷ Por la mañana</span>
+              </div>
+              <div class="cat-grid">
+                <div class="cat">
+                  <h4>Sport</h4>
+                  <div class="chips"><span>Golf</span><span>Futbol</span><span>Pádel</span><span>Tenis</span><span>Basketball</span><span>Pickleball</span><span>Waterpolo</span><span data-en="Swimming">Natación</span><span data-en="Volleyball">Vóleibol</span><span data-en="Baseball">Béisbol</span><span>Gaga ball</span><span>Ultimate frisbee</span></div>
+                </div>
+                <div class="cat">
+                  <h4 data-en="Adventure & discovery">Aventura y descubrimiento</h4>
+                  <div class="chips"><span data-en="Survival">Supervivencia</span><span data-en="Hiking">Senderismo</span><span data-en="Archery">Tiro con arco</span><span data-en="Target shooting">Tiro deportivo</span><span data-en="Mountain bike">Bici de montaña</span><span>Rappel</span><span data-en="Zipline">Tirolesa</span><span>Acro</span></div>
+                </div>
+                <div class="cat">
+                  <h4 data-en="Performing arts">Artes escénicas</h4>
+                  <div class="chips"><span>Jazz</span><span data-en="Musical theater">Teatro musical</span><span>Cheer</span></div>
+                </div>
+              </div>
+            </div>
+            <!-- Talleres -->
+            <div class="tab-panel" id="talleres">
+              <div class="panel-head">
+                <div>
+                  <h3 data-en="Workshops">Talleres</h3>
+                  <p data-en="Calmer afternoon sessions that build problem-solving, soft skills and the technical know-how of each craft.">Por la tarde, actividades más tranquilas que desarrollan resolución de problemas, soft skills y el conocimiento técnico de cada taller.</p>
+                </div>
+                <span class="panel-time" data-en="◷ Afternoon">◷ Por la tarde</span>
+              </div>
+              <div class="tag-list">
+                <span data-en="Painting">Pintura</span><span data-en="Crafts">Manualidades</span><span data-en="Jewelry">Joyería</span><span data-en="Textiles">Textil</span><span data-en="Mechanics">Mecánica</span><span data-en="Sustainability">Sustentabilidad</span><span data-en="Carpentry">Carpintería</span><span data-en="Gastronomy">Gastronomía</span><span data-en="Healthy living">Vida saludable</span><span data-en="Experiments">Experimentos</span><span data-en="Agriculture">Agricultura</span>
+              </div>
+              <p style="margin-top:24px;color:oklch(1 0 0 / .8);font-size:16px" data-en="Each category includes a wide range of options so kids can choose what they love.">Cada categoría incluye una amplia gama de opciones para que los niños puedan elegir lo que más les gusta.</p>
+            </div>
+            <!-- Imagine -->
+            <div class="tab-panel" id="imagine">
+              <div class="panel-head">
+                <div>
+                  <h3>Imagine</h3>
+                  <p data-en="Role-play, visualization and rally games that rebuild imagination and creativity — skills today's screen-time generations are losing.">Juegos de roles, visualización y rallys que recuperan la imaginación y la creatividad, habilidades que las generaciones actuales pierden por el uso de la tecnología.</p>
+                </div>
+                <span class="panel-time" data-en="✦ Creativity">✦ Creatividad</span>
+              </div>
+              <p style="color:oklch(1 0 0 / .85);font-size:17px;max-width:60ch" data-en="Each adventure has an eye-catching theme tailored to the campers' age, turning imagination into the best kind of play.">Cada aventura tiene un tema llamativo acorde a su edad, convirtiendo la imaginación en el mejor de los juegos.</p>
+            </div>
+            <!-- Nocturnos -->
+            <div class="tab-panel" id="nocturnos">
+              <div class="panel-head">
+                <div>
+                  <h3 data-en="Night games">Nocturnos</h3>
+                  <p data-en="Games after dinner — some physical, some classic camp games. Without a doubt, the best games of the whole experience.">Juegos después de la cena, algunos físicos y otros clásicos de campamento. ¡Sin duda, los mejores juegos de toda la experiencia!</p>
+                </div>
+                <span class="panel-time" data-en="☾ After dinner">☾ Después de cenar</span>
+              </div>
+              <div class="cat-grid">
+                <div class="cat"><h4 data-en="Icebreakers">Icebreakers</h4><p style="color:oklch(1 0 0 / .8);font-size:15px;margin:0" data-en="Games to break the ice between campers and spark friendships in minutes that can last a lifetime.">Juegos para “romper el hielo” y crear lazos de amistad en pocos minutos, que pueden durar toda la vida.</p></div>
+                <div class="cat"><h4 data-en="Organized">Organizados</h4><p style="color:oklch(1 0 0 / .8);font-size:15px;margin:0" data-en="Classic camp games that build critical thinking, teamwork, emotional intelligence and social skills.">Clásicos de campamento que desarrollan pensamiento crítico, trabajo en equipo, inteligencia emocional y habilidades sociales.</p></div>
+                <div class="cat"><h4 data-en="Rallies">Rallys</h4><p style="color:oklch(1 0 0 / .8);font-size:15px;margin:0" data-en="Big nighttime missions that bring whole teams together to solve, compete and celebrate.">Grandes misiones nocturnas que unen a los equipos para resolver, competir y celebrar.</p></div>
+              </div>
+            </div>
+            <!-- Teambuilding -->
+            <div class="tab-panel" id="teambuilding">
+              <div class="panel-head">
+                <div>
+                  <h3>Teambuilding</h3>
+                  <p data-en="Activities that let campers define themselves as a team, develop leadership and discover everyone's strengths.">Actividades y ejercicios que permiten a los campers definirse como equipo, desarrollar liderazgo y conocer las habilidades de los demás.</p>
+                </div>
+                <span class="panel-time" data-en="⬢ Teams">⬢ Equipos</span>
+              </div>
+              <p style="color:oklch(1 0 0 / .85);font-size:17px;max-width:62ch" data-en="Teams are split by age range and earn their own badge — building belonging from day one.">Los equipos se subdividen por rango de edades (6/7 · 8/9 · 10/11 · 12/13 · 14 · 15/16 · 17) y obtienen su propia insignia, creando pertenencia desde el primer día.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CRUCE 1 · imágenes en movimiento ===== -->
+  <div class="crossing" data-crossing>
+    <span class="crossing-cap"><span data-en="On the trail · camp life">En ruta · vida de campamento</span></span>
+    <div class="crossing-track">
+      <figure class="cphoto" style="--w:300px;--h:210px"><div class="ph"><span>FOTO · CLÍNICA DEPORTIVA</span></div><figcaption>↳ futbol_am.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:230px;--h:300px"><div class="ph"><span>FOTO · TIROLESA</span></div><figcaption>↳ tirolesa.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:340px;--h:230px"><div class="ph"><span>FOTO · ALBERCA</span></div><figcaption>↳ alberca.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:240px;--h:270px"><div class="ph"><span>FOTO · TALLER</span></div><figcaption>↳ taller_pm.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:320px;--h:210px"><div class="ph"><span>FOTO · NOCTURNO</span></div><figcaption>↳ nocturno.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:250px;--h:280px"><div class="ph"><span>FOTO · EQUIPO</span></div><figcaption>↳ teambuilding.jpg</figcaption></figure>
+    </div>
+  </div>
+
+  <!-- ===== 03 · SEGURIDAD ===== -->
+  <section class="block station" id="seguridad" data-station="03">
+    <div class="wrap">
+      <aside class="station-aside">
+        <div class="waypoint">
+          <span class="wp-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 l7 3 v5 c0 5-3 8-7 10 -4-2-7-5-7-10 V6Z"/><path d="M9 12 l2 2 4-4"/></svg></span>
+          <span class="wp-name"><b>III</b><span data-en="Safety">Seguridad</span></span>
+        </div>
+      </aside>
+      <div class="station-body">
+        <div class="section-head reveal">
+          <div class="rite-mark"><span class="rnum">III</span><span class="rlbl" data-en="Third chapter">Capítulo tercero</span></div>
+          <span class="eyebrow" data-en="Total peace of mind">Tranquilidad total</span>
+          <h2 data-en="Their greatest treasures, in the best hands.">Sus tesoros más grandes, en las mejores manos.</h2>
+          <p data-en="A safe place not just for the kids, but for parents too. So families trust completely.">Un espacio seguro no solo para los niños, sino también para los papás, para que las familias confíen al 100%.</p>
+        </div>
+        <div class="safe-grid">
+          <div class="stat reveal"><div class="big">1<em>:</em>5</div><p data-en="One adult for every five campers, all day long.">Un adulto por cada cinco campers, todo el tiempo.</p></div>
+          <div class="stat reveal d1"><div class="big">24<em>/</em>7</div><p data-en="Paramedic, psychologist, pedagogue and lifeguard, around the clock.">Paramédico, psicólogo, pedagogo y salvavidas, las 24 horas.</p></div>
+          <div class="stat reveal d2"><div class="big">70<em>h</em></div><p data-en="Annual training course every staff member completes.">Curso de capacitación anual que completa cada miembro del staff.</p></div>
+          <div class="stat reveal"><div class="big" style="font-size:30px" data-en="Infirmary">Enfermería</div><p data-en="On-site infirmary inside the facilities.">Enfermería dentro de las instalaciones.</p></div>
+          <div class="stat reveal d1"><div class="big" style="font-size:30px" data-en="Insurance">Seguro</div><p data-en="Accident insurance at all times.">Seguro contra accidentes en todo momento.</p></div>
+          <div class="stat reveal d2"><div class="big" style="font-size:30px" data-en="Air transport">Aéreo</div><p data-en="Air transport in any emergency that requires it.">Transporte aéreo en caso de emergencia que lo requiera.</p></div>
+        </div>
+
+        <div class="altua-band reveal d1">
+          <div class="topo-mini"></div>
+          <div class="inner">
+            <span class="eyebrow" style="color:var(--sun)" data-en="The Altuas · our counselors">Los Altuas · nuestros monitores</span>
+            <h3 style="font-size:30px;margin-top:14px;max-width:24ch" data-en="More than counselors: role models who guide, listen and inspire.">Más que monitores: modelos a seguir que guían, escuchan e inspiran.</h3>
+            <div class="altua-grid">
+              <div class="altua-item"><div class="b">01</div><div><h4 data-en="Support & guidance">Apoyo y orientación</h4><p data-en="Always available to guide each child's growth.">Disponibles para guiar a cada niño en su desarrollo.</p></div></div>
+              <div class="altua-item"><div class="b">02</div><div><h4 data-en="Empathetic listening">Escucha empática</h4><p data-en="They understand each child's needs and worries.">Comprenden las necesidades y preocupaciones de cada niño.</p></div></div>
+              <div class="altua-item"><div class="b">03</div><div><h4 data-en="Confidence & self-esteem">Confianza y autoestima</h4><p data-en="The Altua–camper bond builds real security.">La relación Altua–camper construye seguridad personal.</p></div></div>
+              <div class="altua-item"><div class="b">04</div><div><h4 data-en="Rigorous selection">Selección rigurosa</h4><p data-en="12 psychometric tests, interviews and references.">12 pruebas psicométricas, entrevistas y cartas de recomendación.</p></div></div>
+              <div class="altua-item"><div class="b">05</div><div><h4 data-en="Trained in safety">Capacitados en seguridad</h4><p data-en="First aid, civil protection, water & height rescue.">Primeros auxilios, protección civil, rescate acuático y de altura.</p></div></div>
+              <div class="altua-item"><div class="b">06</div><div><h4 data-en="Trained in prevention">Capacitados en prevención</h4><p data-en="Crisis intervention, conflict management, mental health.">Intervención en crisis, manejo de conflictos y salud mental.</p></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal d2" style="margin-top:40px">
+          <span class="eyebrow" style="color:var(--coral)" data-en="The Lendakaris · directors">Los Lendakaris · directivos</span>
+          <p style="margin-top:10px;color:var(--ink-soft);max-width:60ch" data-en="A directive team at your service before, during and after camp to resolve any question you have.">Un equipo directivo siempre a tus órdenes antes, durante y después del campamento para resolver cualquier duda.</p>
+          <div class="team-row">
+            <div class="team-card"><div class="av ph"><span>FOTO</span></div><b>Sancho</b><span data-en="General Director">Director General</span></div>
+            <div class="team-card"><div class="av ph"><span>FOTO</span></div><b>Maikel</b><span>R.R.H.H.</span></div>
+            <div class="team-card"><div class="av ph"><span>FOTO</span></div><b>Iván</b><span data-en="Logistics">Logística</span></div>
+            <div class="team-card"><div class="av ph"><span>FOTO</span></div><b>María</b><span data-en="Creative">Creativa</span></div>
+            <div class="team-card"><div class="av ph"><span>FOTO</span></div><b>Quintín</b><span data-en="Activities">Actividades</span></div>
+            <div class="team-card"><div class="av ph"><span>FOTO</span></div><b>Itziar</b><span data-en="Operations">Operativa</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 · EL LUGAR ===== -->
+  <section class="block station" id="lugar" data-station="04">
+    <div class="wrap">
+      <aside class="station-aside">
+        <div class="waypoint">
+          <span class="wp-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20 L10 7 l3 5 2-3 6 11 Z"/></svg></span>
+          <span class="wp-name"><b>IV</b><span data-en="The Place">El Lugar</span></span>
+        </div>
+      </aside>
+      <div class="station-body">
+        <div class="section-head reveal">
+          <div class="rite-mark"><span class="rnum">IV</span><span class="rlbl" data-en="Fourth chapter">Capítulo cuarto</span></div>
+          <span class="eyebrow" data-en="Malinalco, State of México">Malinalco, Edo. de México</span>
+          <h2 data-en="A natural fortress with modern facilities.">Una fortaleza natural con instalaciones modernas.</h2>
+          <p data-en="More than 8 hectares of fully fenced land, open and covered spaces, surrounded by mountains.">Más de 8 hectáreas de terreno completamente bardeado, espacios abiertos y techados, rodeados de montaña.</p>
+        </div>
+        <div class="place-grid">
+          <div class="place-photo reveal">
+            <div class="ph"><span>FOTO PANORÁMICA — INSTALACIONES MALINALCO</span></div>
+            <div class="place-coords">18°56′44″N · 99°29′34″O · 1,750 MSNM</div>
+          </div>
+          <div class="place-side reveal d1">
+            <div class="feature"><span class="d" style="background:var(--coral)"></span><span data-en="Maximum security · CCTV · 24/7">Máxima seguridad · CCTV · 24/7</span></div>
+            <div class="feature"><span class="d" style="background:var(--sky)"></span><span data-en="Heated swimming pool">Alberca climatizada</span></div>
+            <div class="feature"><span class="d" style="background:var(--sun)"></span><span data-en="Bathroom & showers per cabin">Baño y regaderas por cabaña</span></div>
+            <div class="feature"><span class="d" style="background:var(--berry)"></span><span data-en="On-site infirmary">Enfermería en sitio</span></div>
+            <div class="feature"><span class="d" style="background:var(--moss)"></span><span data-en="Arcade & recreation">Arcade y recreación</span></div>
+            <div class="feature"><span class="d" style="background:var(--coral)"></span><span data-en="Fully fenced grounds">Terreno completamente bardeado</span></div>
+          </div>
+        </div>
+        <div class="facts-strip">
+          <div class="fact reveal"><div class="big">8+</div><p data-en="hectares of land">hectáreas de terreno</p></div>
+          <div class="fact reveal d1"><div class="big">24/7</div><p data-en="on-site security">seguridad en sitio</p></div>
+          <div class="fact reveal d2"><div class="big">1,750</div><p data-en="meters above sea level">metros sobre el mar</p></div>
+          <div class="fact reveal d3"><div class="big">100%</div><p data-en="fenced grounds">terreno bardeado</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CRUCE 2 · imágenes en movimiento ===== -->
+  <div class="crossing" data-crossing>
+    <span class="crossing-cap"><span data-en="On the trail · moments">En ruta · momentos</span></span>
+    <div class="crossing-track">
+      <figure class="cphoto" style="--w:250px;--h:280px"><div class="ph"><span>FOTO · CABAÑAS</span></div><figcaption>↳ cabanas.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:330px;--h:220px"><div class="ph"><span>FOTO · COMEDOR</span></div><figcaption>↳ comedor.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:240px;--h:300px"><div class="ph"><span>FOTO · LA FORJA</span></div><figcaption>↳ la_forja.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:320px;--h:210px"><div class="ph"><span>FOTO · FOGATA</span></div><figcaption>↳ fogata.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:260px;--h:260px"><div class="ph"><span>FOTO · AMIGOS</span></div><figcaption>↳ amigos.jpg</figcaption></figure>
+      <figure class="cphoto" style="--w:300px;--h:200px"><div class="ph"><span>FOTO · ATARDECER</span></div><figcaption>↳ atardecer.jpg</figcaption></figure>
+    </div>
+  </div>
+
+  <!-- ===== 05 · COMIDA & FORJA ===== -->
+  <section class="block station" id="forja" data-station="05">
+    <div class="wrap">
+      <aside class="station-aside">
+        <div class="waypoint">
+          <span class="wp-disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 c1.5 4 5 5 5 9 a5 5 0 0 1-10 0 c0-2 1-3.2 2.2-4.2 C9 9.5 11 8.6 12 3Z"/></svg></span>
+          <span class="wp-name"><b>V</b><span data-en="Food & Forja">Comida & Forja</span></span>
+        </div>
+      </aside>
+      <div class="station-body">
+        <div class="section-head reveal">
+          <div class="rite-mark"><span class="rnum">V</span><span class="rlbl" data-en="Fifth chapter">Capítulo quinto</span></div>
+          <span class="eyebrow" data-en="Body & character">Cuerpo y carácter</span>
+          <h2 data-en="We nourish how they eat — and who they become.">Cuidamos cómo comen y en quiénes se convierten.</h2>
+        </div>
+        <div class="duo">
+          <div class="panel-card food reveal">
+            <span class="kicker" data-en="Food">Alimentos</span>
+            <h3 data-en="Balanced, nutritious and delicious.">Balanceada, nutritiva y deliciosa.</h3>
+            <p style="color:var(--ink-soft)" data-en="We care about each child's nutrition every single day.">Nos preocupamos por la alimentación de cada uno de ellos y ellas, todos los días.</p>
+            <ul>
+              <li data-en="Reviewed by a Food Coach">Revisada por un Food Coach</li>
+              <li data-en="Local products & quality standards">Productos locales y estándares de calidad</li>
+              <li data-en="Menus based on the day's calorie burn">Menús basados en el desgaste calórico del día</li>
+              <li data-en="Diets and allergies fully attended">Dietas y alergias completamente atendidas</li>
+            </ul>
+          </div>
+          <div class="panel-card forja reveal d1">
+            <span class="kicker" data-en="La Forja · human formation">La Forja · formación humana</span>
+            <h3 data-en="15 minutes a day that shape a lifetime.">15 minutos al día que forman para toda la vida.</h3>
+            <p style="color:oklch(1 0 0 / .92)" data-en="Every day your kids get a 15-minute talk about a value or virtue suited to their age.">Tus hijos reciben diariamente una charla de 15 minutos sobre un valor o virtud acorde a su edad.</p>
+            <ul>
+              <li data-en="A formation model adapted to each stage of development">Modelo de formación adaptado a cada etapa de desarrollo</li>
+              <li data-en="A space focused on human formation">Un espacio enfocado a la formación humana</li>
+            </ul>
+            <p class="tagline" data-en="“Growing by living, always joyful.”">“Crecer viviendo, siempre alegres.”</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ CTA / CONTACTO ============ -->
+<section class="cta-band" id="contacto">
+  <div class="topo"></div>
+  <svg class="cta-seal" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="1.4" />
+    <circle cx="50" cy="50" r="38.5" fill="none" stroke="currentColor" stroke-width="1" />
+    <circle class="seal-rotate" cx="50" cy="50" r="43" fill="none" stroke="currentColor" stroke-width="4.6" stroke-dasharray="1.3 6" opacity=".55" />
+    <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M28 64 L40 48 L49 58 L60 44 L72 64" />
+      <path d="M24 64 H76" opacity=".55" />
+    </g>
+    <circle cx="50" cy="33" r="5" fill="currentColor" />
+    <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M50 24.5 V21" /><path d="M58.5 24.5 L61 22" /><path d="M58.5 33 H62" /><path d="M58.5 41.5 L61 44" />
+      <path d="M41.5 24.5 L39 22" /><path d="M41.5 33 H38" /><path d="M41.5 41.5 L39 44" />
+    </g>
+  </svg>
+  <div class="inner">
+    <span class="eyebrow" style="color:var(--sun);justify-content:center" data-en="The oath">El juramento</span>
+    <h2 class="disp" style="margin-top:18px" data-en="The summer they'll never forget is closer than you think.">El verano que no van a olvidar está <em>más cerca de ti</em> de lo que crees.</h2>
+    <p class="quote" data-en="“Whoever walks the path of Alaia never walks alone.”">“Quien recorre la senda de Alaia, nunca camina solo.”</p>
+    <div class="contact-row">
+      <a class="btn-primary" href="https://wa.me/525585699850" target="_blank" rel="noopener" data-en="Join the order →">Únete a la orden →</a>
+      <a class="btn-ghost" href="https://instagram.com/alaiacamp" target="_blank" rel="noopener">@alaiacamp</a>
+    </div>
+    <div class="phones">
+      <span>55 8569 9850</span><span>55 4186 3068</span><span>56 1919 0149</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand"><b>ALAIA</b><i>CAMP</i></div>
+      <p style="margin-top:14px;max-width:30ch;font-size:14.5px" data-en="Adventure summer camp in Malinalco. July 19–25, 2026.">Campamento de verano de aventura en Malinalco. 19 al 25 de julio de 2026.</p>
+    </div>
+    <div class="cols">
+      <div>
+        <h5 data-en="Explore">Explora</h5>
+        <a href="#porque" data-en="Why Alaia">¿Por qué Alaia?</a>
+        <a href="#actividades" data-en="Activities">Actividades</a>
+        <a href="#seguridad" data-en="Safety">Seguridad</a>
+        <a href="#lugar" data-en="The Place">El Lugar</a>
+      </div>
+      <div>
+        <h5 data-en="Contact">Contacto</h5>
+        <a href="https://instagram.com/alaiacamp" target="_blank" rel="noopener">@alaiacamp</a>
+        <a href="#">alaiacamp.com</a>
+        <a href="tel:5585699850">55 8569 9850</a>
+        <a href="#" data-en="Malinalco, State of México">Malinalco, Edo. de México</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Alaia Camp · <span data-en="All rights reserved.">Todos los derechos reservados.</span></span>
+      <span data-en="Carr. a Joquicingo, C.P. 52443 · Malinalco, Edo. Méx.">Carr. a Joquicingo, C.P. 52443 · Malinalco, Edo. Méx.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js?v=14"></script>
+<script src="assets/trail.js?v=14"></script>
+</body>
+</html>
