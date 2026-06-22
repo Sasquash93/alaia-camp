@@ -43,6 +43,13 @@ Los datos se guardan en `server/data/` (base embebida, estilo Mongo) y las fotos
 - **Backend:** Node + Express (`server/`). API REST, auth con JWT + contraseñas encriptadas (bcrypt), subida de imágenes (multer).
 - **Base de datos:** documentos estilo MongoDB. Hoy embebida y persistente (`@seald-io/nedb`) para correr sin instalar nada.
 
+## Ponerlo en línea para enseñarlo (rápido, sin cuentas)
+Doble clic en **`INICIAR-ONLINE.bat`**. Levanta el backend y abre un túnel público de
+Cloudflare; copia la URL `https://XXXX.trycloudflare.com` que aparece y mándala (el panel
+admin queda en `esa-URL/admin.html`). Esa URL funciona mientras tu compu y esa ventana
+estén abiertas, y **cambia cada vez que lo reinicias** — ideal para demos en vivo.
+Para un link permanente que viva solo, ver abajo.
+
 ## Pasar a producción (siguiente etapa)
 - **Base de datos real:** define la variable `MONGO_URL` apuntando a **MongoDB Atlas**.
   `server/db.js` está aislado para migrar a Mongo sin tocar las rutas.
