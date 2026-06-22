@@ -35,6 +35,19 @@
   ];
   window.ALAIA_CATALOG = CATALOG; window.ALAIA_BUNDLES = BUNDLES;
 
+  // Si el backend está disponible, los productos/bundles vienen de la base de datos.
+  async function loadCatalog(){
+    if(!window.AlaiaAPI) return;
+    try{
+      if(!(await AlaiaAPI.available())) return;
+      var ps = await AlaiaAPI.get('/products');
+      if(ps && ps.length){ CATALOG = ps.map(function(p){ return {id:p._id, cat:p.cat||'accesorios', name:p.name, en:p.en||p.name, price:p.price, sizes:(p.sizes&&p.sizes.length)?p.sizes:null, tag:p.tag||'', desc:p.desc||'', den:p.den||p.desc||'', image:p.image||''}; }); }
+      var bs = await AlaiaAPI.get('/bundles');
+      if(bs && bs.length){ BUNDLES = bs.map(function(b){ return {id:b._id, name:b.name, en:b.en, tagline:b.tagline, ten:b.ten, price:b.price, was:b.was, hot:!!b.hot, items:b.items||[], iten:b.iten||[]}; }); }
+      window.ALAIA_CATALOG = CATALOG; window.ALAIA_BUNDLES = BUNDLES;
+    }catch(e){}
+  }
+
   // ---------- cart state ----------
   var KEY='alaia-cart';
   function load(){ try{ return JSON.parse(localStorage.getItem(KEY))||[]; }catch(e){ return []; } }
@@ -44,9 +57,9 @@
 
   function findProduct(id){
     var p = CATALOG.find(function(x){return x.id===id;});
-    if(p) return {id:p.id, name:p.name, en:p.en, price:p.price};
+    if(p) return {id:p.id, name:p.name, en:p.en, price:p.price, image:p.image||''};
     var b = BUNDLES.find(function(x){return x.id===id;});
-    if(b) return {id:b.id, name:b.name, en:b.en, price:b.price, bundle:true};
+    if(b) return {id:b.id, name:b.name, en:b.en, price:b.price, bundle:true, image:''};
     return null;
   }
   function keyOf(id,opt){ return id+'|'+(opt||''); }
@@ -58,7 +71,7 @@
     var k=keyOf(id,opt);
     var ex=cart.find(function(i){return i.key===k;});
     if(ex){ ex.qty+=qty; } else {
-      cart.push({key:k,id:id,opt:opt||'',name:p.name,en:p.en,price:p.price,qty:qty,bundle:!!p.bundle});
+      cart.push({key:k,id:id,opt:opt||'',name:p.name,en:p.en,price:p.price,qty:qty,bundle:!!p.bundle,image:p.image||''});
     }
     save(cart); checkoutMode=false; updateBadge(); toast(window.ALAIA_LANG==='en'?'Added to cart':'Agregado al carrito'); if(window.AlaiaShell) window.AlaiaShell.openCart();
   }
@@ -84,7 +97,7 @@
       var nm = en ? i.en : i.name;
       var opt = i.opt ? '<div class="ci-opt">'+(en?'Size':'Talla')+': '+i.opt+'</div>' : (i.bundle?'<div class="ci-opt" data-en="Bundle">Paquete</div>':'');
       return '<div class="cart-item">'+
-        '<div class="thumb ph dark"><span style="font-size:9px">'+(nm.split(' ')[0])+'</span></div>'+
+        (i.image?'<div class="thumb"><img src="'+i.image+'" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:12px"></div>':'<div class="thumb ph dark"><span style="font-size:9px">'+(nm.split(' ')[0])+'</span></div>')+
         '<div><div class="ci-name">'+nm+'</div>'+opt+
           '<div class="qty"><button data-q="-" data-k="'+i.key+'">−</button><span>'+i.qty+'</span><button data-q="+" data-k="'+i.key+'">+</button></div></div>'+
         '<div style="text-align:right"><div class="ci-price">'+money(i.price*i.qty)+'</div>'+
@@ -143,7 +156,8 @@
     var list = cat==='all'?CATALOG:CATALOG.filter(function(p){return p.cat===cat;});
     grid.innerHTML=list.map(function(p){
       var sizes = p.sizes ? '<div class="opts" data-pid="'+p.id+'">'+p.sizes.map(function(s,i){return '<button class="'+(i===0?'on':'')+'" data-size="'+s+'">'+s+'</button>';}).join('')+'</div>' : '';
-      return '<div class="product"><div class="thumb ph dark">'+(p.tag?'<span class="tag" data-en="'+(p.den?'':'')+'">'+p.tag+'</span>':'')+'<span>'+p.name+'</span></div>'+
+      var thumb = p.image ? '<div class="thumb">'+(p.tag?'<span class="tag">'+p.tag+'</span>':'')+'<img src="'+p.image+'" alt="" style="width:100%;height:100%;object-fit:cover">'+'</div>' : '<div class="thumb ph dark">'+(p.tag?'<span class="tag">'+p.tag+'</span>':'')+'<span>'+p.name+'</span></div>';
+      return '<div class="product">'+thumb+
         '<div class="body"><div class="cat" data-en="'+(p.cat==='ropa'?'Apparel':'Accessories')+'">'+(p.cat==='ropa'?'Ropa':'Accesorios')+'</div>'+
           '<h3 data-en="'+p.en+'">'+p.name+'</h3>'+
           '<p class="desc" data-en="'+p.den+'">'+p.desc+'</p>'+ sizes +
@@ -197,7 +211,12 @@
   });
 
   function placeOrder(){
+    var nmEl=document.getElementById('coName'), ctEl=document.getElementById('coContact'), cmEl=document.getElementById('coCamper');
+    var name=nmEl?nmEl.value.trim():'', contact=ctEl?ctEl.value.trim():'', camper=cmEl?cmEl.value.trim():'';
+    var items=cart.map(function(i){return {name:i.name,en:i.en,opt:i.opt,price:i.price,qty:i.qty};});
+    var tot=total();
     var order='ALA-'+Math.floor(100000+Math.random()*900000);
+    if(window.AlaiaAPI){ AlaiaAPI.available().then(function(ok){ if(ok) AlaiaAPI.post('/orders',{name:name,contact:contact,camper:camper,items:items,total:tot}).catch(function(){}); }); }
     clear(); checkoutMode=false;
     var box=document.getElementById('cartItems'), foot=document.getElementById('cartFoot');
     var en=window.ALAIA_LANG==='en';
@@ -212,6 +231,6 @@
   // ---------- public + init ----------
   window.AlaiaCart={add:add,remove:remove,setQty:setQty,count:count,total:total,clear:clear,render:render,items:function(){return cart.slice();}};
   updateBadge();
-  renderStore();
+  loadCatalog().then(function(){ renderStore(); });
   window.addEventListener('langchange',function(){ render(); if(document.getElementById('product-grid')){ var on=document.querySelector('#store-filters button.on'); drawProducts(on?on.getAttribute('data-cat'):'all'); } });
 })();

@@ -5,6 +5,36 @@
    menú móvil y apertura/cierre del carrito.
    Cargar ANTES de store.js / account.js, y i18n.js de ÚLTIMO.
    ============================================================ */
+/* ---- AlaiaAPI: cliente del backend (mismo origen) ----
+   Si el backend no está disponible (p.ej. en GitHub Pages), available()
+   devuelve false y los módulos caen a modo demo (localStorage). */
+window.AlaiaAPI = (function(){
+  var _avail = null;
+  function tk(admin){ try{ return localStorage.getItem(admin?'alaia-admin-token':'alaia-token'); }catch(e){ return null; } }
+  async function req(method, path, body, opts){
+    opts = opts || {}; var headers = {}; var t = tk(opts.admin);
+    if(t) headers['Authorization'] = 'Bearer ' + t;
+    var payload;
+    if(body instanceof FormData) payload = body;
+    else if(body !== undefined){ headers['Content-Type'] = 'application/json'; payload = JSON.stringify(body); }
+    var r = await fetch('/api' + path, { method: method, headers: headers, body: payload });
+    var ct = r.headers.get('content-type') || '';
+    var data = ct.indexOf('json') >= 0 ? await r.json() : await r.text();
+    if(!r.ok) throw new Error((data && data.error) || ('HTTP ' + r.status));
+    return data;
+  }
+  return {
+    available: async function(){ if(_avail !== null) return _avail; try{ var r = await fetch('/api/health', { cache: 'no-store' }); _avail = r.ok; }catch(e){ _avail = false; } return _avail; },
+    get: function(p,o){ return req('GET',p,undefined,o); },
+    post: function(p,b,o){ return req('POST',p,b,o); },
+    put: function(p,b,o){ return req('PUT',p,b,o); },
+    del: function(p,o){ return req('DELETE',p,undefined,o); },
+    setToken: function(t){ try{ localStorage.setItem('alaia-token',t); }catch(e){} },
+    clearToken: function(){ try{ localStorage.removeItem('alaia-token'); }catch(e){} },
+    token: function(){ return tk(false); }
+  };
+})();
+
 (function(){
   'use strict';
   if(document.getElementById('nav')) return; // home aún con nav propio: no duplicar
